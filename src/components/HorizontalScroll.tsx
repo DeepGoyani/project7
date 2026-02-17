@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
+import project1 from "@/assets/project-1.png";
+import project2 from "@/assets/project-2.png";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
 import project5 from "@/assets/project-5.jpg";
@@ -10,11 +10,8 @@ import project5 from "@/assets/project-5.jpg";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { title: "Luminous Brand", category: "Branding", img: project1 },
-  { title: "Gallery Space", category: "Web Design", img: project2 },
-  { title: "Prestige Line", category: "E-Commerce", img: project3 },
-  { title: "Abstract Forms", category: "Art Direction", img: project4 },
-  { title: "Urban Pulse", category: "Development", img: project5 },
+  { title: "KOWF.IN", category: "Digital Platform", img: project1, url: "https://kowf.in" },
+  { title: "Voyagers Adventure", category: "Travel Platform", img: project2, url: "https://voyagersadventure.com/" },
 ];
 
 const HorizontalScroll = () => {
@@ -49,11 +46,20 @@ const HorizontalScroll = () => {
         ease: "none",
         scrollTrigger: {
           trigger: section,
-          start: "top top",
+          start: "top 20%",
           end: () => `+=${track.scrollWidth - window.innerWidth}`,
           pin: true,
+          pinSpacing: true,
           scrub: 1,
           invalidateOnRefresh: true,
+          onLeave: () => {
+            // Reset position when leaving section
+            gsap.set(track, { x: 0 });
+          },
+          onEnterBack: () => {
+            // Reset position when re-entering from top
+            gsap.set(track, { x: 0 });
+          }
         },
       });
     }, section);
@@ -65,7 +71,7 @@ const HorizontalScroll = () => {
     <section
       id="work"
       ref={sectionRef}
-      className="relative overflow-hidden bg-background"
+      className="relative overflow-hidden bg-background z-30"
     >
       {/* Header */}
       <div className="px-6 pt-24 md:px-12 md:pt-40">
@@ -83,11 +89,12 @@ const HorizontalScroll = () => {
       </div>
 
       {/* Horizontal track */}
-      <div ref={trackRef} className="flex gap-8 px-6 pb-24 md:px-12 md:pb-40">
+      <div ref={trackRef} className="flex gap-8 px-6 pb-24 md:px-12 md:pb-40 pl-12 md:pl-20">
         {projects.map((project, i) => (
           <div
             key={i}
-            className="hoverable group relative w-[80vw] flex-shrink-0 md:w-[50vw] lg:w-[40vw]"
+            className={`hoverable group relative w-[80vw] flex-shrink-0 md:w-[50vw] lg:w-[40vw] ${project.url ? 'cursor-pointer' : ''}`}
+            onClick={() => project.url && window.open(project.url, '_blank')}
           >
             <div className="aspect-[4/3] overflow-hidden">
               <img
@@ -112,7 +119,7 @@ const HorizontalScroll = () => {
             {/* Hover overlay */}
             <div className="absolute inset-0 flex aspect-[4/3] items-center justify-center bg-background/50 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
               <span className="text-3xl font-black uppercase text-foreground drop-shadow-lg md:text-5xl">
-                View Project
+                {project.url ? 'Visit Project' : 'View Project'}
               </span>
             </div>
           </div>
