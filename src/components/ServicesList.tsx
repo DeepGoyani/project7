@@ -2,8 +2,8 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
+import project1 from "@/assets/project-1.png";
+import project2 from "@/assets/project-2.png";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
 import project5 from "@/assets/project-5.jpg";
@@ -16,6 +16,8 @@ const services = [
   { name: "SEO & Strategy", img: project3 },
   { name: "Branding", img: project4 },
   { name: "E-Commerce", img: project5 },
+  { name: "N8N Automation", img: project1 },
+  { name: "Software Solutions", img: project2 },
 ];
 
 const ServicesList = () => {
@@ -104,7 +106,7 @@ const ServicesList = () => {
       {/* Always rendered, visibility controlled by GSAP opacity */}
       <div
         ref={imageRef}
-        className="pointer-events-none absolute z-10 h-[200px] w-[300px] overflow-hidden"
+        className="pointer-events-none absolute z-50 h-[200px] w-[300px] overflow-hidden"
         style={{ opacity: 0 }}
       >
         <img
@@ -115,7 +117,7 @@ const ServicesList = () => {
         />
       </div>
 
-      <div className="relative z-20">
+      <div className="relative z-40">
         {services.map((service, i) => (
           <div
             key={i}
@@ -135,8 +137,6 @@ const ServicesList = () => {
           </div>
         ))}
       </div>
-      {/* Bottom gradient spacer for smooth transition to next section */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-b from-background to-transparent" />
     </section>
   );
 };
