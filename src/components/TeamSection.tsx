@@ -2,29 +2,29 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Linkedin, Globe, Github } from "lucide-react";
-import teamMember1 from "@/assets/team-member-1.jpg";
-import teamMember2 from "@/assets/team-member-2.jpg";
+import teamMember1 from "@/assets/team-member-1.png";
+import teamMember2 from "@/assets/team-member-2.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const members = [
   {
-    name: "Alex Carter",
+    name: "Deep Goyani",
     role: "Full-Stack Developer",
     bio: "Crafting performant digital experiences with clean code and bold ideas.",
     img: teamMember1,
-    linkedin: "#",
-    portfolio: "#",
-    github: "#",
+    linkedin: "https://www.linkedin.com/in/deepgoyani/",
+    portfolio: "https://deep-goyani.vercel.app/",
+    github: "https://github.com/DeepGoyani",
   },
   {
-    name: "Maya Chen",
-    role: "Creative Designer",
-    bio: "Turning visions into pixel-perfect realities with strategic design thinking.",
+    name: "Om Savani",
+    role: "Full-Stack Developer", 
+    bio: "Building scalable applications with modern technologies and best practices.",
     img: teamMember2,
-    linkedin: "#",
-    portfolio: "#",
-    github: "#",
+    linkedin: "https://www.linkedin.com/in/om-savani-8ab04a273/",
+    portfolio: "https://omsavaniportfolio.netlify.app/",
+    github: "https://github.com/Omhacker",
   },
 ];
 
