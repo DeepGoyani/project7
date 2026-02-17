@@ -1,11 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useNavigate } from "react-router-dom";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const AgencyFooter = () => {
   const footerRef = useRef<HTMLElement>(null);
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -28,6 +31,18 @@ const AgencyFooter = () => {
     return () => ctx.revert();
   }, []);
 
+  const handleLetsTalkClick = () => {
+    setShowConfirmation(true);
+  };
+
+  const handleYes = () => {
+    navigate('/contact');
+  };
+
+  const handleNo = () => {
+    setShowConfirmation(false);
+  };
+
   return (
     <footer
       id="contact"
@@ -39,13 +54,48 @@ const AgencyFooter = () => {
         <p className="mb-6 text-sm font-medium uppercase tracking-widest text-muted-foreground">
           Have a project in mind?
         </p>
-        <a
-          href="mailto:hello@agency.com"
-          className="footer-cta hoverable text-[10vw] font-black uppercase leading-none text-foreground transition-opacity hover:opacity-60 md:text-[12vw]"
-        >
-          LET'S TALK
-        </a>
+        
+        {!showConfirmation ? (
+          <div className="relative group">
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-600/20 to-purple-600/20 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <button
+              className="footer-cta hoverable relative text-[10vw] font-black uppercase leading-none text-foreground transition-all duration-300 hover:scale-105 hover:tracking-wider md:text-[12vw] cursor-pointer"
+              onClick={handleLetsTalkClick}
+            >
+              WANNA TALK
+            </button>
+            <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <span className="text-[2vw] text-muted-foreground animate-pulse whitespace-nowrap">tap me →</span>
+            </div>
+            <div className="mt-12 flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="w-2 h-2 bg-foreground rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+              <div className="w-2 h-2 bg-foreground rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+              <div className="w-2 h-2 bg-foreground rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col items-center gap-6 animate-fade-in">
+            <p className="text-2xl md:text-3xl font-semibold text-center">
+              Want to talk?
+            </p>
+            <div className="flex gap-4">
+              <button
+                onClick={handleYes}
+                className="px-8 py-3 bg-foreground text-background rounded-lg font-medium hover:bg-muted hover:text-foreground transition-colors"
+              >
+                Yes
+              </button>
+              <button
+                onClick={handleNo}
+                className="px-8 py-3 border border-foreground rounded-lg font-medium hover:bg-muted transition-colors"
+              >
+                No
+              </button>
+            </div>
+          </div>
+        )}
       </div>
+      
       <div className="flex flex-col items-center gap-6 md:flex-row md:items-end md:justify-between">
         <div className="flex flex-col gap-1">
           <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
@@ -53,13 +103,20 @@ const AgencyFooter = () => {
           </span>
         </div>
         <div className="flex gap-6">
-          {["Instagram", "Twitter", "Dribbble", "LinkedIn"].map((s) => (
+          {[
+            { name: "Instagram", url: "https://instagram.com" },
+            { name: "Twitter", url: "https://twitter.com" },
+            { name: "Dribbble", url: "https://dribbble.com" },
+            { name: "LinkedIn", url: "https://linkedin.com" }
+          ].map((social) => (
             <a
-              key={s}
-              href="#"
+              key={social.name}
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hoverable text-xs font-medium uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
             >
-              {s}
+              {social.name}
             </a>
           ))}
         </div>
