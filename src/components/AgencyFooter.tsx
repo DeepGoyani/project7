@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import { ArrowUpRight, User, LogIn } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -119,6 +121,22 @@ const AgencyFooter = () => {
               {social.name}
             </a>
           ))}
+        </div>
+        <div className="flex gap-4">
+          <button
+            onClick={() => navigate('/login')}
+            className="flex items-center gap-2 px-4 py-2 text-xs font-medium uppercase tracking-wider border border-border rounded-lg hover:bg-foreground hover:text-background transition-all"
+          >
+            <LogIn className="w-3 h-3" />
+            Login
+          </button>
+          <button
+            onClick={() => navigate('/signup')}
+            className="flex items-center gap-2 px-4 py-2 text-xs font-medium uppercase tracking-wider border border-border rounded-lg hover:bg-foreground hover:text-background transition-all"
+          >
+            <User className="w-3 h-3" />
+            Sign Up
+          </button>
         </div>
       </div>
     </footer>
