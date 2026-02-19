@@ -1,29 +1,31 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import project1 from "@/assets/project-1.png";
-import project2 from "@/assets/project-2.png";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
-import project5 from "@/assets/project-5.jpg";
-
-gsap.registerPlugin(ScrollTrigger);
-
-const projects = [
-  { title: "KOWF.IN", category: "Digital Platform", img: project1, url: "https://kowf.in" },
-  { title: "Voyagers Adventure", category: "Travel Platform", img: project2, url: "https://voyagersadventure.com/" },
-];
+import { ExternalLink, Github } from "lucide-react";
 
 const HorizontalScroll = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const headingRef = useRef<HTMLHeadingElement>(null);
+  const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const track = trackRef.current;
-    if (!section || !track) return;
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:3001/api/projects');
+        if (response.ok) {
+          const projectsData = await response.json();
+          setProjects(projectsData);
+        }
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
+    };
 
+    fetchProjects();
+  }, []);
+
+  useEffect(() => {
     const ctx = gsap.context(() => {
       // Heading reveal
       gsap.fromTo(
@@ -34,38 +36,38 @@ const HorizontalScroll = () => {
           opacity: 1,
           duration: 1,
           ease: "power4.out",
-          scrollTrigger: { trigger: section, start: "top 80%" },
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" },
         }
       );
 
       // Calculate how far the track needs to scroll
-      const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+      const getScrollAmount = () => -(trackRef.current?.scrollWidth - window.innerWidth);
 
-      gsap.to(track, {
+      gsap.to(trackRef.current, {
         x: getScrollAmount,
         ease: "none",
         scrollTrigger: {
-          trigger: section,
+          trigger: sectionRef.current,
           start: "top 20%",
-          end: () => `+=${track.scrollWidth - window.innerWidth}`,
+          end: () => `+=${trackRef.current?.scrollWidth - window.innerWidth}`,
           pin: true,
           pinSpacing: true,
           scrub: 1,
           invalidateOnRefresh: true,
           onLeave: () => {
             // Reset position when leaving section
-            gsap.set(track, { x: 0 });
+            gsap.set(trackRef.current, { x: 0 });
           },
           onEnterBack: () => {
             // Reset position when re-entering from top
-            gsap.set(track, { x: 0 });
+            gsap.set(trackRef.current, { x: 0 });
           }
         },
       });
-    }, section);
+    }, sectionRef);
 
     return () => ctx.revert();
-  }, []);
+  }, [projects]);
 
   return (
     <section
