@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import project1 from "@/assets/project-1.png";
-import project2 from "@/assets/project-2.png";
+import project1 from "@/assets/project-1.jpg";
+import project2 from "@/assets/project-2.jpg";
 import project3 from "@/assets/project-3.jpg";
 import project4 from "@/assets/project-4.jpg";
 import project5 from "@/assets/project-5.jpg";

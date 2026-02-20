@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import heroImg from "@/assets/hero-video-placeholder.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -65,21 +64,10 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center">
-        <div
-          ref={imageRef}
-          className="aspect-video overflow-hidden"
-          style={{ width: "50%" }}
-        >
-          <img
-            src={heroImg}
-            alt="Hero visual"
-            className="h-full w-full object-cover"
-          />
-        </div>
-      </div>
     </section>
   );
 };
 
 export default Hero;
+
+
