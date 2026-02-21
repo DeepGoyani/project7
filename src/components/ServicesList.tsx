@@ -2,11 +2,13 @@ import { useRef, useState, useEffect, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight } from "lucide-react";
-import project1 from "@/assets/project-1.png";
-import project2 from "@/assets/project-2.png";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
-import project5 from "@/assets/project-5.jpg";
+import project1 from "@/assets/project-6.jpg";
+import project2 from "@/assets/project-7.jpg";
+import project3 from "@/assets/project-8.jpg";
+import project4 from "@/assets/project-9.jpg";
+import project5 from "@/assets/project-10.jpg";
+import project6 from "@/assets/project-11.png";
+import project7 from "@/assets/project-12.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,8 +18,8 @@ const services = [
   { name: "SEO & Strategy", img: project3 },
   { name: "Branding", img: project4 },
   { name: "E-Commerce", img: project5 },
-  { name: "N8N Automation", img: project1 },
-  { name: "Software Solutions", img: project2 },
+  { name: "N8N Automation", img: project6 },
+  { name: "Software Solutions", img: project7 },
 ];
 
 const ServicesList = () => {

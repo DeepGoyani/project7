@@ -1,7 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+<<<<<<< HEAD
+import project1 from "@/assets/project-1.jpg";
+import project2 from "@/assets/project-2.jpg";
+import project3 from "@/assets/project-3.jpg";
+import project4 from "@/assets/project-4.jpg";
+import project5 from "@/assets/project-5.jpg";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const projects = [
+  { title: "KOWF.IN", category: "Digital Platform", img: project1, url: "https://kowf.in" },
+  { title: "Voyagers Adventure", category: "Travel Platform", img: project2, url: "https://voyagersadventure.com/" },
+];
+=======
 import { ExternalLink, Github } from "lucide-react";
+>>>>>>> main
 
 const HorizontalScroll = () => {
   const sectionRef = useRef<HTMLElement>(null);

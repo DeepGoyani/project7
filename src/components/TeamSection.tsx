@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Linkedin, Globe, Github } from "lucide-react";
-import teamMember1 from "@/assets/team-member-1.png";
-import teamMember2 from "@/assets/team-member-2.png";
+import teamMember1 from "@/assets/team-member-1.jpg";
+import teamMember2 from "@/assets/team-member-2.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,7 +19,7 @@ const members = [
   },
   {
     name: "Om Savani",
-    role: "Full-Stack Developer", 
+    role: "Full-Stack Developer",
     bio: "Building scalable applications with modern technologies and best practices.",
     img: teamMember2,
     linkedin: "https://www.linkedin.com/in/om-savani-8ab04a273/",
