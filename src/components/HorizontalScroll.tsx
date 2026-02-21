@@ -1,22 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-<<<<<<< HEAD
-import project1 from "@/assets/project-1.jpg";
-import project2 from "@/assets/project-2.jpg";
-import project3 from "@/assets/project-3.jpg";
-import project4 from "@/assets/project-4.jpg";
-import project5 from "@/assets/project-5.jpg";
+import { ExternalLink, Github } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const projects = [
-  { title: "KOWF.IN", category: "Digital Platform", img: project1, url: "https://kowf.in" },
-  { title: "Voyagers Adventure", category: "Travel Platform", img: project2, url: "https://voyagersadventure.com/" },
-];
-=======
-import { ExternalLink, Github } from "lucide-react";
->>>>>>> main
 
 const HorizontalScroll = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -24,16 +11,48 @@ const HorizontalScroll = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const [projects, setProjects] = useState([]);
 
+  // Fallback projects when database is empty
+  const fallbackProjects = [
+    {
+      title: "KOWF.IN",
+      description: "E-commerce platform with advanced features",
+      technologies: "React, Node.js, MongoDB",
+      imageUrl: "/project-1.png",
+      liveUrl: "https://kowf.in",
+      githubUrl: "https://github.com/deepgoyani/kowf",
+      category: "E-commerce",
+      img: "/project-1.png",
+      url: "https://kowf.in"
+    },
+    {
+      title: "Voyagers Adventure",
+      description: "Travel booking platform with real-time tracking",
+      technologies: "Next.js, TypeScript, PostgreSQL",
+      imageUrl: "/project-2.png",
+      liveUrl: "https://voyagersadventure.com",
+      githubUrl: "https://github.com/deepgoyani/voyagers",
+      category: "Travel",
+      img: "/project-2.png",
+      url: "https://voyagersadventure.com"
+    }
+  ];
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
         const response = await fetch('http://localhost:3001/api/projects');
         if (response.ok) {
           const projectsData = await response.json();
-          setProjects(projectsData);
+          // If database is empty, use fallback projects
+          setProjects(projectsData.length > 0 ? projectsData : fallbackProjects);
+        } else {
+          // If API fails, use fallback projects
+          setProjects(fallbackProjects);
         }
       } catch (error) {
         console.error('Error fetching projects:', error);
+        // Use fallback projects on error
+        setProjects(fallbackProjects);
       }
     };
 
