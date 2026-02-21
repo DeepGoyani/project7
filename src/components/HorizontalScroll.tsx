@@ -17,22 +17,22 @@ const HorizontalScroll = () => {
       title: "KOWF.IN",
       description: "E-commerce platform with advanced features",
       technologies: "React, Node.js, MongoDB",
-      imageUrl: "/project-1.png",
+      imageUrl: "/Screenshot 2026-02-21 145019.png",
       liveUrl: "https://kowf.in",
       githubUrl: "https://github.com/deepgoyani/kowf",
       category: "E-commerce",
-      img: "/project-1.png",
+      img: "/Screenshot 2026-02-21 145019.png",
       url: "https://kowf.in"
     },
     {
       title: "Voyagers Adventure",
       description: "Travel booking platform with real-time tracking",
       technologies: "Next.js, TypeScript, PostgreSQL",
-      imageUrl: "/project-2.png",
+      imageUrl: "/Screenshot 2026-02-21 145059.png",
       liveUrl: "https://voyagersadventure.com",
       githubUrl: "https://github.com/deepgoyani/voyagers",
       category: "Travel",
-      img: "/project-2.png",
+      img: "/Screenshot 2026-02-21 145059.png",
       url: "https://voyagersadventure.com"
     }
   ];
