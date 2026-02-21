@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import Preloader from "@/components/Preloader";
 import CustomCursor from "@/components/CustomCursor";
 import ParticleField from "@/components/ParticleField";
-import Navbar from "@/components/Navbar";
+import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import MarqueeSection from "@/components/MarqueeSection";
 import HorizontalScroll from "@/components/HorizontalScroll";
@@ -27,7 +27,7 @@ const Index = () => {
       <ParticleField />
       {!preloaderDone && <Preloader onComplete={handlePreloaderComplete} />}
       <SmoothScroll>
-        <Navbar />
+        <Header />
         <main className="relative z-10">
           <section id="home">
             <Hero />
